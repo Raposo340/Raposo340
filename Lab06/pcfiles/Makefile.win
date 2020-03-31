@@ -1,0 +1,40 @@
+# Project: ArduPC
+# Makefile created by Dev-C++ 5.12
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o tcp_client.o ../control.o modbusTCP.o utils.o
+LINKOBJ  = main.o tcp_client.o ../control.o modbusTCP.o utils.o
+LIBS     = -L"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/lib" -L"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/x86_64-w64-mingw32/lib" -static-libstdc++ -static-libgcc -lwsock32 -g3
+INCS     = -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/include" -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/x86_64-w64-mingw32/include" -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include"
+CXXINCS  = -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/include" -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/x86_64-w64-mingw32/include" -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include" -I"C:/devcpp/Dev-Cpp.5.12.MinGW-W64.GCC.8.1.0.Portable/MinGW64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"
+BIN      = ArduPC.exe
+CXXFLAGS = $(CXXINCS) -march=native -Os -std=gnu++11 -g3
+CFLAGS   = $(INCS) -march=native -Os -std=gnu++11 -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+tcp_client.o: tcp_client.cpp
+	$(CPP) -c tcp_client.cpp -o tcp_client.o $(CXXFLAGS)
+
+../control.o: ../control.cpp
+	$(CPP) -c ../control.cpp -o ../control.o $(CXXFLAGS)
+
+modbusTCP.o: modbusTCP.cpp
+	$(CPP) -c modbusTCP.cpp -o modbusTCP.o $(CXXFLAGS)
+
+utils.o: utils.cpp
+	$(CPP) -c utils.cpp -o utils.o $(CXXFLAGS)
