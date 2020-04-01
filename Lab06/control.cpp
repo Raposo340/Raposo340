@@ -93,7 +93,7 @@ void control_loop(void)
 		{ EX_STa = 40; } else
 	if ((EX_STa==20) && ((s_near)))
 		{ EX_STa = 21; } else
-	if ((EX_STa==20) && ((s_touch) || (up))|| (s_down))
+	if ((EX_STa==20) && ((s_touch) || (up)|| (s_down)))
 		{ EX_STa = 0; } else
 	if ((EX_STa==21) && ((up) || (s_down)))
 		{ EX_STa = 0; } else
@@ -102,8 +102,8 @@ void control_loop(void)
 	
 	
 	
-  	if (CNT>=CNTmax)
-  		CNT=CNTmax;
+  	if (CNT>=CNTmax)		//se por algum motivo o s_down se ativar de forma anormal, isto evita que o contador excede 2 (neste caso), caso em que este não ia servir de nada
+  		{CNT=CNTmax;}			//pelo que o portão nunca iria lubrificar
   
 	// Calculate Outputs
 	m_on      = (EX_STa == 20) || (EX_STa == 21) || (EX_STa==40);
